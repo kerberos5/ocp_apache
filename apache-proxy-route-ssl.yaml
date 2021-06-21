@@ -8,7 +8,7 @@ metadata:
 spec:
   host: apache-https.ubuntu.local
   port:
-    targetPort: port9443
+    targetPort: port81
   tls:
     caCertificate: |
       -----BEGIN CERTIFICATE-----
