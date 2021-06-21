@@ -1,0 +1,22 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    http: apache-proxy
+  name: apache-http
+  namespace: ubuntu-test
+spec:
+  host: apache-http.ubuntu.local
+  port:
+    targetPort: port81
+  to:
+    kind: Service
+    name: apache-proxy-svc
+    weight: 100
+  wildcardPolicy: None
+status:
+  ingress:
+    - conditions:
+      host: apache-http.ubuntu.local
+      routerName: router
+      wildcardPolicy: None

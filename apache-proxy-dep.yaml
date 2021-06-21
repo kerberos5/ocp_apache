@@ -1,0 +1,82 @@
+﻿apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: apache-proxy-pv-claim-work
+  labels:
+    app: apache-proxy
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  selector:
+    matchLabels:
+      storage-tier: apache-proxy-pv-work
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: apache-proxy-pv-claim-vhosts
+  labels:
+    app: apache-proxy
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  selector:
+    matchLabels:
+      storage-tier: apache-proxy-pv-vhosts
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apache-proxy
+  labels:
+    app: apache-proxy
+spec:
+  selector:
+    matchLabels:
+      app: apache-proxy
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: apache-proxy
+        tier: frontend
+    spec:
+      hostAliases:
+      - ip: "192.168.1.235"
+        hostnames:
+        - "wildfly.ubuntu.local"
+        - "apache-http.ubuntu.local"
+        - "apache-https.ubuntu.local"
+      containers:
+      - name: apache-proxy
+        image: bitnami/apache:latest
+        ports:
+        - name: port80
+          containerPort: 8080
+        - name: port443
+          containerPort: 8443
+        resources:
+          limits:
+            cpu: 500m
+          requests:
+            cpu: 200m      
+        volumeMounts:
+        - name: apache-proxy-work
+          mountPath: /app
+        - name: apache-proxy-vhosts
+          mountPath: /opt/bitnami/apache/conf/vhosts
+      volumes:
+      - name: apache-proxy-work
+        persistentVolumeClaim:
+          claimName: apache-proxy-pv-claim-work
+      - name: apache-proxy-vhosts
+        persistentVolumeClaim:
+          claimName: apache-proxy-pv-claim-vhosts

@@ -1,0 +1,159 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    app: apache-proxy
+  name: apache-https
+  namespace: ubuntu-test
+spec:
+  host: apache-https.ubuntu.local
+  port:
+    targetPort: port9443
+  tls:
+    caCertificate: |
+      -----BEGIN CERTIFICATE-----
+      MIID+jCCAuKgAwIBAgIJALjRtA8q9K1JMA0GCSqGSIb3DQEBCwUAMFoxCzAJBgNV
+      BAYTAlVTMRMwEQYDVQQIEwpXYXNoaW5ndG9uMRAwDgYDVQQHEwdTZWF0dGxlMSQw
+      IgYDVQQKExtnZXRhQ2VydCAtIHd3dy5nZXRhY2VydC5jb20wHhcNMTYxMTA2MTY0
+      NjQ4WhcNMzgwMTE1MTY0NjQ4WjBaMQswCQYDVQQGEwJVUzETMBEGA1UECBMKV2Fz
+      aGluZ3RvbjEQMA4GA1UEBxMHU2VhdHRsZTEkMCIGA1UEChMbZ2V0YUNlcnQgLSB3
+      d3cuZ2V0YWNlcnQuY29tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA
+      o5BIPGopF4vvAfZBuaW3yRMSIbVsRnp2wvYTCwOLP02if8XJXZd3hC09Va3cNmCy
+      9pRaXXFkj1cGRRvLvD6d+7MarBNG5rMQA7YacYraKLLhSwmgJDI+jxi/jJmW5mWi
+      fFDkki2JV6/w2jv3ntTjreU4b7yebToRpNrEw6VuugMEGVD8n5dfv+1ko5yICmMH
+      P4tykzDerAFf9uv/+vWAhJj1bIGlnZwDqUnZBD0aIu9zvsYQZ0O3P0ylvJsBmGyz
+      YSKY7FFVU1M46YR6KmswqhV+IGreD/a9DwjcvrrOPzw7D3/70O0eV4a5cKiWKGYO
+      OtSyqjIUlQo/5Rf42MyRqQIDAQABo4HCMIG/MB0GA1UdDgQWBBTN3xggim10Tzfc
+      suCJoqkLlYjLCzCBjAYDVR0jBIGEMIGBgBTN3xggim10TzfcsuCJoqkLlYjLC6Fe
+      pFwwWjELMAkGA1UEBhMCVVMxEzARBgNVBAgTCldhc2hpbmd0b24xEDAOBgNVBAcT
+      B1NlYXR0bGUxJDAiBgNVBAoTG2dldGFDZXJ0IC0gd3d3LmdldGFjZXJ0LmNvbYIJ
+      ALjRtA8q9K1JMA8GA1UdEwEB/wQFMAMBAf8wDQYJKoZIhvcNAQELBQADggEBAB9B
+      IZE+vY03wvE0/qvXBdlZFNVqA5qC/dYcAP1jCAL29aEf3UDgMMM4JcKdbohYCd+1
+      xsp+1tTruq2qd4DNSaNg5J6yQQTz57A1T0NibuGWYaixktuwjT0Jmgm1dD8R8gyf
+      AGdAcpjVgVeRh6o6T7ypJxiyb8wCRJGXXSMM4H9D+ZWQxM3S6JJTfm2GP1D7PkYz
+      Hx45LKBg6nq9l1f0wZnvg1jCJko2OxPQAgJconyc7IGTJoVVnxaULYhOu2BVqOMf
+      UcJwQAy9qhhEg7quRo9rmqqDohb1pUHvn1YTVNWtqgPbSC6qlxciX9Mb+P3yMQ8A
+      xUrZglZYLRSg4q7Hj8s=
+      -----END CERTIFICATE-----
+    certificate: |
+      Certificate:
+          Data:
+              Version: 3 (0x2)
+              Serial Number: 5970 (0x1752)
+          Signature Algorithm: sha256WithRSAEncryption
+              Issuer: C=US, ST=Washington, L=Seattle, O=getaCert - www.getacert.com
+              Validity
+                  Not Before: Jun  9 10:58:34 2021 GMT
+                  Not After : Aug  8 10:58:34 2021 GMT
+              Subject: C=IT, ST=Italy, L=Rome, O=ubuntu.local, OU=ubuntu.local, CN=apache-https.ubuntu.local
+              Subject Public Key Info:
+                  Public Key Algorithm: rsaEncryption
+                      Public-Key: (2048 bit)
+                      Modulus:
+                          00:d4:fe:9a:73:55:62:55:e8:e1:e1:8e:4f:71:db:
+                          5e:47:e0:7b:8c:30:cd:31:78:c4:0f:2d:09:74:2f:
+                          66:98:99:7d:5e:50:71:f3:e4:fe:9b:90:36:24:1f:
+                          eb:9a:fd:57:26:26:30:68:b8:2c:a2:a5:7a:80:72:
+                          f2:cd:94:9b:e9:21:a3:ac:49:1c:cc:a2:9a:af:54:
+                          74:ad:4e:22:5f:2c:ae:1d:0c:fb:21:29:1b:43:95:
+                          1d:af:c7:f5:ac:38:13:07:e0:22:f0:e3:f6:f9:74:
+                          ee:df:03:94:89:c5:47:d7:45:1d:2d:35:bd:01:44:
+                          d7:c1:3e:97:b4:df:96:f7:c7:61:84:a0:60:d4:7e:
+                          a9:9b:1e:1b:3c:db:68:26:94:ea:6f:a3:45:b3:50:
+                          7a:66:24:bc:f4:54:03:fd:5c:08:fc:00:cb:b9:96:
+                          09:6c:e7:7a:19:e5:d6:00:7a:a2:43:1f:64:80:a2:
+                          82:92:95:83:fc:b5:75:31:92:4a:fd:d7:2c:31:85:
+                          4d:30:24:32:fe:67:5d:71:aa:93:9c:79:33:9f:f3:
+                          c1:9c:54:ce:e6:3f:0a:32:78:f5:c3:55:ae:2f:eb:
+                          58:9a:bc:02:b8:49:a6:5c:33:7b:40:73:8d:3c:2e:
+                          12:b9:21:d3:24:7c:11:45:d8:1a:62:8c:c9:e7:9b:
+                          f4:b9
+                      Exponent: 65537 (0x10001)
+              X509v3 extensions:
+                  X509v3 Basic Constraints: 
+                      CA:FALSE
+                  Netscape Cert Type: 
+                      SSL Client, SSL Server, S/MIME, Object Signing
+                  X509v3 Key Usage: 
+                      Digital Signature, Key Encipherment
+                  X509v3 Extended Key Usage: 
+                      TLS Web Client Authentication, TLS Web Server Authentication
+          Signature Algorithm: sha256WithRSAEncryption
+               3d:92:2f:15:9c:82:1c:50:28:f8:a7:0c:a3:d8:b7:02:56:65:
+               11:9f:ed:85:b9:2a:11:4c:06:62:bd:f1:b4:74:c0:53:81:97:
+               4c:f6:7f:6e:12:22:a1:2d:b7:74:ed:5d:c5:8f:02:41:76:d3:
+               7f:47:c7:27:a3:62:92:cb:eb:2c:16:cd:4e:40:3e:2e:4b:3b:
+               03:2d:30:13:27:50:be:12:3d:84:58:87:84:a7:16:bd:23:cc:
+               55:73:1b:35:5b:13:df:6f:ab:46:0e:08:15:46:11:4a:f4:e9:
+               09:48:f9:3c:b6:f6:0b:a0:59:5d:90:80:b6:c8:08:d7:2c:1d:
+               e1:2d:8a:69:61:9a:67:3f:89:19:49:00:68:58:a0:c3:82:40:
+               04:b1:d0:80:5c:9a:33:46:d0:a8:e6:8c:43:64:ca:1b:4e:20:
+               c6:ba:b6:b3:7b:0f:f2:7d:4e:fe:73:62:c7:8a:6d:97:0d:ee:
+               6a:1c:a5:01:bc:d7:f4:1e:52:c0:18:f2:61:32:f7:f0:2d:9d:
+               10:e7:5d:00:ec:1c:bb:22:84:c1:fb:95:8d:c2:f3:31:42:1f:
+               6d:b2:21:f7:cc:0a:8e:6a:b4:ae:79:cd:21:ce:d2:3e:ea:45:
+               85:d7:e4:7d:87:1f:0d:6a:31:8d:23:87:13:17:65:4c:ff:1a:
+               fe:81:d5:5d
+      -----BEGIN CERTIFICATE-----
+      MIIDoDCCAoigAwIBAgICF1IwDQYJKoZIhvcNAQELBQAwWjELMAkGA1UEBhMCVVMx
+      EzARBgNVBAgTCldhc2hpbmd0b24xEDAOBgNVBAcTB1NlYXR0bGUxJDAiBgNVBAoT
+      G2dldGFDZXJ0IC0gd3d3LmdldGFjZXJ0LmNvbTAeFw0yMTA2MDkxMDU4MzRaFw0y
+      MTA4MDgxMDU4MzRaMH4xCzAJBgNVBAYTAklUMQ4wDAYDVQQIDAVJdGFseTENMAsG
+      A1UEBwwEUm9tZTEVMBMGA1UECgwMdWJ1bnR1LmxvY2FsMRUwEwYDVQQLDAx1YnVu
+      dHUubG9jYWwxIjAgBgNVBAMMGWFwYWNoZS1odHRwcy51YnVudHUubG9jYWwwggEi
+      MA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDU/ppzVWJV6OHhjk9x215H4HuM
+      MM0xeMQPLQl0L2aYmX1eUHHz5P6bkDYkH+ua/VcmJjBouCyipXqAcvLNlJvpIaOs
+      SRzMopqvVHStTiJfLK4dDPshKRtDlR2vx/WsOBMH4CLw4/b5dO7fA5SJxUfXRR0t
+      Nb0BRNfBPpe035b3x2GEoGDUfqmbHhs822gmlOpvo0WzUHpmJLz0VAP9XAj8AMu5
+      lgls53oZ5dYAeqJDH2SAooKSlYP8tXUxkkr91ywxhU0wJDL+Z11xqpOceTOf88Gc
+      VM7mPwoyePXDVa4v61iavAK4SaZcM3tAc408LhK5IdMkfBFF2BpijMnnm/S5AgMB
+      AAGjTDBKMAkGA1UdEwQCMAAwEQYJYIZIAYb4QgEBBAQDAgTwMAsGA1UdDwQEAwIF
+      oDAdBgNVHSUEFjAUBggrBgEFBQcDAgYIKwYBBQUHAwEwDQYJKoZIhvcNAQELBQAD
+      ggEBAD2SLxWcghxQKPinDKPYtwJWZRGf7YW5KhFMBmK98bR0wFOBl0z2f24SIqEt
+      t3TtXcWPAkF2039HxyejYpLL6ywWzU5APi5LOwMtMBMnUL4SPYRYh4SnFr0jzFVz
+      GzVbE99vq0YOCBVGEUr06QlI+Ty29gugWV2QgLbICNcsHeEtimlhmmc/iRlJAGhY
+      oMOCQASx0IBcmjNG0KjmjENkyhtOIMa6trN7D/J9Tv5zYseKbZcN7mocpQG81/Qe
+      UsAY8mEy9/AtnRDnXQDsHLsihMH7lY3C8zFCH22yIffMCo5qtK55zSHO0j7qRYXX
+      5H2HHw1qMY0jhxMXZUz/Gv6B1V0=
+      -----END CERTIFICATE-----
+    key: |
+      -----BEGIN PRIVATE KEY-----
+      MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDU/ppzVWJV6OHh
+      jk9x215H4HuMMM0xeMQPLQl0L2aYmX1eUHHz5P6bkDYkH+ua/VcmJjBouCyipXqA
+      cvLNlJvpIaOsSRzMopqvVHStTiJfLK4dDPshKRtDlR2vx/WsOBMH4CLw4/b5dO7f
+      A5SJxUfXRR0tNb0BRNfBPpe035b3x2GEoGDUfqmbHhs822gmlOpvo0WzUHpmJLz0
+      VAP9XAj8AMu5lgls53oZ5dYAeqJDH2SAooKSlYP8tXUxkkr91ywxhU0wJDL+Z11x
+      qpOceTOf88GcVM7mPwoyePXDVa4v61iavAK4SaZcM3tAc408LhK5IdMkfBFF2Bpi
+      jMnnm/S5AgMBAAECggEAMXfUfVbmWNeWpqE7uFDfq8fqSdwHvCa1OmUWXgKoTGbR
+      pDcA0EluDMlImclEGiIevICAG8Iys6/FLNIFrFOIhnPGpLvyUWCulmwCEUIlX39s
+      DNk39jKq315hn7LMTyxS1zBqTRJVCQjsdaVKOVk1XzzxEs/5TrMjfQFBkMOhN3iN
+      n3fsMQ8GU7+4I2tGjqH+C3H7KQsR7xxywHZhz5MDhvKW+7qbQFFeDFzIUtIjU4Fv
+      OW4SphQYEPvZFADZb/8JMdYSTgpN6RSihDGEWzCNc17G8+T7hGEQEwyiUldA3v/5
+      bReUONqUbY1wrbYE7tqnbQQDH/bELjpP+ljHMJkVhQKBgQDvuK6ToT0s362LiS7H
+      U/gRSnzrDzyw7NhxX6KaoFNOnA05Rq4Mcv3AkQ8F6+vis3Wps7G/pl3Ze14FRSEX
+      1N/4EyFKVBAHA9tBLXQLLB7GOpjRtqDNKYl4CCZxxSbLvLh8y/1Fmptd6JvRpbmL
+      6oCOSok3OyhO6lFACh7W5q7vVwKBgQDjdU0mithHWlf1DM6v06EgKfFY/gVObIat
+      A5gpb4Ve9wQ9oD1tqfZmZ0WAyTfXvGNubagV9HaIU/c3JUY8rp4CifFfE152KQaG
+      YSyvR1EVA5mh5ZpztmjEtEI+2dg/PEVV3GsxsnJvzjKpTJMKtMPDk1rUudlu4rVj
+      I5a1ioiCbwKBgBGySoDveDql0IPqfp+MXVW5b/tSRqKw+VF1Q+WyTDQTZQ6DXzng
+      C0d57ef8AI/du6Ppdge12lvBtbEh502BE3+WufBowD4kVL09A8IHYcY0cS+aEcjT
+      dih8QYpIiZKkveHIlUvcG/gUwdv6JfZkO1VFv1dqcJFSzuixVpF6uhNFAoGAWP0D
+      ehjIFOJblxuzoUaCuzqtmcuH9+6tofLODSf8XfL2TcXrQoRESjwNDR2sI1Mo84Mj
+      R7OkzCFNjt2eZQ9L8mJVdIT3Z/MVAm3yNYEJT9dgu95AVxT+WDbN1BkWaWcDGVxq
+      876E1wks+N9kh8PA8zsrRh6P2roHjQnXZJ8WWTECgYEAza5Dny6avpTQm7QRWB2h
+      rkyifWA2FO0L+ePQ2jrXe1a4udhzKjmru3LxYORlJqSUj61busBVWopCnpnt/0iD
+      PpW5thIqAoIIoADO3W7UAyEhDkp9DARFFAg/jEXlN/F9rGSSPctbjrsmPWVSWBGg
+      g+QVobBaTlWRDvyzFWAgUgs=
+      -----END PRIVATE KEY-----
+    termination: edge
+  to:
+    kind: Service
+    name: apache-proxy-svc
+    weight: 100
+  wildcardPolicy: None
+status:
+  ingress:
+    - conditions:
+      host: apache-https.ubuntu.local
+      routerName: router
+      wildcardPolicy: None
